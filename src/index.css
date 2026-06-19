@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-hover: hsl(var(--primary-hover));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  /* Identité Chacun Sa Part : une couleur par rôle, utilisée partout de la même façon */
+  --color-p0: hsl(var(--p0));         /* Déclarant 1 — bleu */
+  --color-p1: hsl(var(--p1));         /* Déclarant 2 — framboise */
+  --color-household: hsl(var(--household)); /* Foyer partagé — violet (mélange des deux) */
+  --color-gain: hsl(var(--gain));     /* Économie, remboursement */
+  --color-owe: hsl(var(--owe));       /* Reste à payer */
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  :root {
+    /* Canvas ardoise craie (DESIGN.md) : évite l'éblouissement pendant une longue simulation */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Bleu républicain profond : marque et actions principales ; indigo interactif au survol */
+    --primary: 224 64% 33%;
+    --primary-hover: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 214 100% 97%;
+    --secondary-foreground: 224 64% 33%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 38%;
+
+    --accent: 214 100% 97%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 213 27% 84%;
+    --ring: 221 83% 53%;
+
+    --p0: 221 83% 50%;
+    --p1: 342 72% 50%;
+    --household: 262 55% 52%;
+    /* Émeraude équité, assombrie à 4.5:1 pour rester lisible en texte */
+    --gain: 162 93% 24%;
+    --owe: 28 88% 44%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 40% 8%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 34% 12%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 34% 12%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 232 90% 78%;
+    --primary-hover: 232 90% 86%;
+    --primary-foreground: 232 38% 12%;
+
+    --secondary: 232 30% 20%;
+    --secondary-foreground: 232 90% 85%;
+
+    --muted: 232 24% 17%;
+    --muted-foreground: 232 14% 68%;
+
+    --accent: 232 24% 17%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 232 22% 21%;
+    --input: 232 20% 28%;
+    --ring: 232 90% 78%;
+
+    --p0: 217 92% 68%;
+    --p1: 342 85% 70%;
+    --household: 262 85% 76%;
+    --gain: 158 60% 52%;
+    --owe: 35 92% 60%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Typographie & Élévation tactile selon DESIGN.md */
+.display-hero {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+@media (max-width: 640px) {
+  .display-hero {
+    font-size: 30px;
+    line-height: 38px;
+  }
+}
+
+.headline-lg {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 34px;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.headline-md {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.title-sm {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.body-base {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.body-sm {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.label-cerfa {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.stat-lg {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .stat-lg {
+    font-size: 22px;
+    line-height: 30px;
+  }
+}
+
+.stat-md {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.shadow-layer-1 {
+  box-shadow: 0px 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.shadow-layer-2 {
+  box-shadow: 0px 4px 12px rgba(30, 58, 138, 0.06);
+}
+
+/* Motif de marque : le « % » du logo, décliné en fond discret */
+.brand-backdrop {
+  background-image:
+    radial-gradient(circle at 12% 0%, hsl(var(--p0) / 0.10), transparent 40%),
+    radial-gradient(circle at 88% 10%, hsl(var(--p1) / 0.09), transparent 38%);
+}
+
+/* Lien d'évitement : visible uniquement au focus clavier */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius);
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-size: 0.875rem;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 150ms ease-out;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: none;
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.35);
+}
+
+/* Le conteneur principal reçoit le focus au changement d'étape, sans contour parasite */
+main:focus {
+  outline: none;
+}
+
+/* Supprime les flèches des champs numériques : les montants se saisissent au clavier */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+
+/* Impression : seul le bilan (#print-report) est imprimé ; il est masqué à l'écran. */
+.print-only {
+  display: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-only {
+    display: block;
+  }
+  #print-report,
+  #print-report * {
+    visibility: visible;
+  }
+  #print-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  @page {
+    margin: 12mm;
+  }
+}
